@@ -1,14 +1,37 @@
-import { LitElement } from 'lit-element';
+import { LitElement } from 'lit';
 
-export class getData extends LitElement {
+export class GetData extends LitElement {
 
-    constructor(){
-        super();
-        console.log('Hola desde getData');
-
+    static get properties (){
+        return{
+            url: {type: String},
+            metho: {type: String}
+        }
     }
 
-    
-}
+    firstUpdated(){
+        this.getData();
+    }  
 
-customElements.define ('get-data', getData);
+    sendData(data){
+        this.dispatchEvent(new CustomEvent('ApiData',{
+            detail: {data}, bubbles:true, composed:true
+        }));
+    }
+
+    getData(){
+        fetch(this.url, {method: this.method})
+        .then((response) => {
+            if(response.ok) return response.json();
+            return Promise.reject(response);
+         })
+
+         .then((data) =>{this.sendData(data);})
+         .catch((error)=>{console.warn('Algo ha falaldo',error);})
+        }
+    }
+
+
+
+
+customElements.define('get-data',GetData);

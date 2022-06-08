@@ -1,16 +1,19 @@
 {
-  "name": "ejercicio",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "api-aire",
+  "description": "Webcomponent api-aire following open-wc recommendations",
+  "license": "MIT",
+  "author": "api-aire",
+  "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "es-dev-server --app-index index.html --node-resolve --watch --open"
+    "analyze": "cem analyze --litelement",
+    "start": "web-dev-server"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "^2.6.0",
-    "lit-element": "^3.2.0"
-  }
+    "lit": "^2.0.2"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.4.17",
+    "@web/dev-server": "^0.1.28"
+  },
+  "customElements": "custom-elements.json"
 }
